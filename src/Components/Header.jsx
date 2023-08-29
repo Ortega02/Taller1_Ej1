@@ -76,7 +76,10 @@ export const Header = ({
               <p className="cart-empty">El carrito está vacío</p>
             )}
           </div>
-         
+          <div className="cart-total">
+            <h3>Total:</h3>
+            <span className="total-pagar">${total}</span>
+          </div>
 
       <div className="container-icon">
         <div className="container-cart-icon" onClick={() => setActive(!active)}>
