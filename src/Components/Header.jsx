@@ -28,7 +28,7 @@ export const Header = ({
   };
 
   return (
-    <header>
+    <header className="header-container">
       <h1>Tienda de Libros</h1>
       <select value={value} onChange={(event) => setValue(event.target.value)}>
         {data.map((product) => (
@@ -81,9 +81,6 @@ export const Header = ({
 
       <div className="container-icon">
         <div className="container-cart-icon" onClick={() => setActive(!active)}>
-          <div className="count-products">
-            <span id="contador-productos">{countProducts}</span>
-          </div>
         </div>
 
       </div>

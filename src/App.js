@@ -7,13 +7,14 @@ function App() {
   const [countProducts, setCountProducts] = useState(0);
   return (
     <>
-      <Header
+      <Header 
         allProducts={allProducts}
         setAllProducts={setAllProducts}
         total={total}
         setTotal={setTotal}
         countProducts={countProducts}
         setCountProducts={setCountProducts}
+        className="header-container"
       />
      {/* <ProductList
         allProducts={allProducts}
