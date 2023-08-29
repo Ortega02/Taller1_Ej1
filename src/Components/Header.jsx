@@ -72,21 +72,54 @@ export const Header = ({
                   </span>
                 </div>
               </div>
-              <input
-                type="number"
-                value={product.quantity}
-                onChange={(event) => {
-                  const newQuantity = parseInt(event.target.value);
-                  if (!isNaN(newQuantity) && newQuantity >= 1) {
+              <div className="quantity-control-container">
+                <button
+                  className="quantity-button"
+                  onClick={() => {
+                    const newQuantity = product.quantity - 1;
+                    if (newQuantity >= 1) {
+                      const updatedProducts = allProducts.map((item) =>
+                        item.id === product.id
+                          ? { ...item, quantity: newQuantity }
+                          : item
+                      );
+
+                      const newTotal = updatedProducts.reduce(
+                        (acc, item) => acc + item.price * item.quantity,
+                        0
+                      );
+
+                      setTotal(newTotal);
+                      setAllProducts(updatedProducts);
+                    }
+                  }}
+                >
+                  {"<"}
+                </button>
+                <span className="product-quantity">{product.quantity}</span>
+                <button
+                  className="quantity-button"
+                  onClick={() => {
+                    const newQuantity = product.quantity + 1;
                     const updatedProducts = allProducts.map((item) =>
                       item.id === product.id
                         ? { ...item, quantity: newQuantity }
                         : item
                     );
+
+                    const newTotal = updatedProducts.reduce(
+                      (acc, item) => acc + item.price * item.quantity,
+                      0
+                    );
+
+                    setTotal(newTotal);
                     setAllProducts(updatedProducts);
-                  }
-                }}
-              />
+                  }}
+                >
+                  {">"}
+                </button>
+              </div>
+
               <img
                 src="https://static.vecteezy.com/system/resources/previews/018/887/462/original/signs-close-icon-png.png"
                 alt="cerrar"
@@ -96,7 +129,7 @@ export const Header = ({
             </div>
           ))
         ) : (
-          <p className="cart-empty" >La lista está vacía</p>
+          <p className="cart-empty">La lista está vacía</p>
         )}
         <div className="cart-total">
           <h3>Total:</h3>
