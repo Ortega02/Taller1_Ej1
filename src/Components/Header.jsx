@@ -11,7 +11,14 @@ export const Header = ({
 }) => {
   const [active, setActive] = useState(false);
   const [value, setValue] = useState("");
-
+  const onDeleteProduct = product => {
+    const results = allProducts.filter(
+        item => item.id !== product.id
+    );
+    setTotal(total - product.price * product.quantity);
+    setCountProducts(countProducts - product.quantity);
+    setAllProducts(results);
+};
   const onAddProduct = (product) => {
     if (allProducts.find((item) => item.id === product.id)) {
       const products = allProducts.map((item) =>
@@ -29,8 +36,9 @@ export const Header = ({
 
   return (
     <header className="header-container">
-      <h1>Tienda de Libros</h1>
+      <h1>Tienda de Peliculas</h1>
       <select value={value} onChange={(event) => setValue(event.target.value)}>
+      <option>Seleccione una peli</option>
         {data.map((product) => (
           <option key={product.id} value={product.title}>
             {product.title}
@@ -49,40 +57,55 @@ export const Header = ({
       >
         Agregar
       </button>
-          <div className={`container-cart-products ${active ? "" : "hidden-cart"}`}>
-            {allProducts.length ? (
-              allProducts.map((product) => (
-                <div className="cart-product" key={product.id}>
-                  <div className="info-cart-product">
-                    <span className="cantidad-producto-carrito">
-                      {product.quantity}
-                    </span>
-                    <p className="titulo-producto-carrito">{product.title}</p>
-                    <span className="precio-producto-carrito">
-                      ${product.price}
-                    </span>
-                  </div>
-                  <img
-                    src="https://static.vecteezy.com/system/resources/previews/018/887/462/original/signs-close-icon-png.png"
-                    alt="cerrar"
-                    className="icon-close"
-                    // onClick={() => onDeleteProduct(product)}
+      <div className={`container-cart-products`}>
+        {allProducts.length ? (
+          allProducts.map((product) => (
+            <div className="cart-product" key={product.id}>
+              <div className="info-cart-product">
+                <div className="info-cart-product">
+                  <input
+                    type="number"
+                    value={product.quantity}
+                    onChange={(event) => {
+                      const newQuantity = parseInt(event.target.value);
+                      if (!isNaN(newQuantity) && newQuantity >= 1) {
+                        const updatedProducts = allProducts.map((item) =>
+                          item.id === product.id
+                            ? { ...item, quantity: newQuantity }
+                            : item
+                        );
+                        setAllProducts(updatedProducts);
+                      }
+                    }}
                   />
+                  <p className="titulo-producto-carrito">{product.title}</p>
+                  <span className="precio-producto-carrito">
+                    ${product.price}
+                  </span>
                 </div>
-              ))
-            ) : (
-              <p className="cart-empty">El carrito está vacío</p>
-            )}
-          </div>
-          <div className="cart-total">
-            <h3>Total:</h3>
-            <span className="total-pagar">${total}</span>
-          </div>
+              </div>
+              <img
+                src="https://static.vecteezy.com/system/resources/previews/018/887/462/original/signs-close-icon-png.png"
+                alt="cerrar"
+                className="icon-close"
+                onClick={() => onDeleteProduct(product)}
+              />
+            </div>
+          ))
+        ) : (
+          <p className="cart-empty">La lista está vacía</p>
+        )}
+      </div>
+      <div className="cart-total">
+        <h3>Total:</h3>
+        <span className="total-pagar">${total}</span>
+      </div>
 
       <div className="container-icon">
-        <div className="container-cart-icon" onClick={() => setActive(!active)}>
-        </div>
-
+        <div
+          className="container-cart-icon"
+          onClick={() => setActive(!active)}
+        ></div>
       </div>
     </header>
   );
