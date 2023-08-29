@@ -49,8 +49,6 @@ export const Header = ({
       >
         Agregar
       </button>
-
-
           <div className={`container-cart-products ${active ? "" : "hidden-cart"}`}>
             {allProducts.length ? (
               allProducts.map((product) => (
