@@ -36,9 +36,10 @@ export const Header = ({
 
   return (
     <header className="header-container">
-      <h1>Tienda de Peliculas</h1>
+      <h1>Lista de compras</h1>
+      <div>
       <select value={value} onChange={(event) => setValue(event.target.value)}>
-      <option>Seleccione una peli</option>
+      <option>Agregar elemento</option>
         {data.map((product) => (
           <option key={product.id} value={product.title}>
             {product.title}
@@ -57,13 +58,21 @@ export const Header = ({
       >
         Agregar
       </button>
+      </div>
       <div className={`container-cart-products`}>
         {allProducts.length ? (
           allProducts.map((product) => (
             <div className="cart-product" key={product.id}>
               <div className="info-cart-product">
                 <div className="info-cart-product">
-                  <input
+                  
+                  <p className="titulo-producto-carrito">{product.title}</p>
+                  <span className="precio-producto-carrito">
+                    ${product.price}
+                  </span>
+                </div>
+              </div>
+              <input
                     type="number"
                     value={product.quantity}
                     onChange={(event) => {
@@ -78,12 +87,6 @@ export const Header = ({
                       }
                     }}
                   />
-                  <p className="titulo-producto-carrito">{product.title}</p>
-                  <span className="precio-producto-carrito">
-                    ${product.price}
-                  </span>
-                </div>
-              </div>
               <img
                 src="https://static.vecteezy.com/system/resources/previews/018/887/462/original/signs-close-icon-png.png"
                 alt="cerrar"
