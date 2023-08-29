@@ -11,14 +11,12 @@ export const Header = ({
 }) => {
   const [active, setActive] = useState(false);
   const [value, setValue] = useState("");
-  const onDeleteProduct = product => {
-    const results = allProducts.filter(
-        item => item.id !== product.id
-    );
+  const onDeleteProduct = (product) => {
+    const results = allProducts.filter((item) => item.id !== product.id);
     setTotal(total - product.price * product.quantity);
     setCountProducts(countProducts - product.quantity);
     setAllProducts(results);
-};
+  };
   const onAddProduct = (product) => {
     if (allProducts.find((item) => item.id === product.id)) {
       const products = allProducts.map((item) =>
@@ -38,26 +36,29 @@ export const Header = ({
     <header className="header-container">
       <h1>Lista de compras</h1>
       <div>
-      <select value={value} onChange={(event) => setValue(event.target.value)}>
-      <option>Agregar elemento</option>
-        {data.map((product) => (
-          <option key={product.id} value={product.title}>
-            {product.title}
-          </option>
-        ))}
-      </select>
-      <button
-        onClick={() => {
-          const selectedProduct = data.find(
-            (product) => product.title === value
-          );
-          if (selectedProduct) {
-            onAddProduct(selectedProduct);
-          }
-        }}
-      >
-        Agregar
-      </button>
+        <select
+          value={value}
+          onChange={(event) => setValue(event.target.value)}
+        >
+          <option>Agregar elemento</option>
+          {data.map((product) => (
+            <option key={product.id} value={product.title}>
+              {product.title}
+            </option>
+          ))}
+        </select>
+        <button
+          onClick={() => {
+            const selectedProduct = data.find(
+              (product) => product.title === value
+            );
+            if (selectedProduct) {
+              onAddProduct(selectedProduct);
+            }
+          }}
+        >
+          Agregar
+        </button>
       </div>
       <div className={`container-cart-products`}>
         {allProducts.length ? (
@@ -65,7 +66,6 @@ export const Header = ({
             <div className="cart-product" key={product.id}>
               <div className="info-cart-product">
                 <div className="info-cart-product">
-                  
                   <p className="titulo-producto-carrito">{product.title}</p>
                   <span className="precio-producto-carrito">
                     ${product.price}
@@ -73,20 +73,20 @@ export const Header = ({
                 </div>
               </div>
               <input
-                    type="number"
-                    value={product.quantity}
-                    onChange={(event) => {
-                      const newQuantity = parseInt(event.target.value);
-                      if (!isNaN(newQuantity) && newQuantity >= 1) {
-                        const updatedProducts = allProducts.map((item) =>
-                          item.id === product.id
-                            ? { ...item, quantity: newQuantity }
-                            : item
-                        );
-                        setAllProducts(updatedProducts);
-                      }
-                    }}
-                  />
+                type="number"
+                value={product.quantity}
+                onChange={(event) => {
+                  const newQuantity = parseInt(event.target.value);
+                  if (!isNaN(newQuantity) && newQuantity >= 1) {
+                    const updatedProducts = allProducts.map((item) =>
+                      item.id === product.id
+                        ? { ...item, quantity: newQuantity }
+                        : item
+                    );
+                    setAllProducts(updatedProducts);
+                  }
+                }}
+              />
               <img
                 src="https://static.vecteezy.com/system/resources/previews/018/887/462/original/signs-close-icon-png.png"
                 alt="cerrar"
@@ -96,12 +96,12 @@ export const Header = ({
             </div>
           ))
         ) : (
-          <p className="cart-empty">La lista está vacía</p>
+          <p className="cart-empty" >La lista está vacía</p>
         )}
-      </div>
-      <div className="cart-total">
-        <h3>Total:</h3>
-        <span className="total-pagar">${total}</span>
+        <div className="cart-total">
+          <h3>Total:</h3>
+          <span className="total-pagar">${total}</span>
+        </div>
       </div>
 
       <div className="container-icon">

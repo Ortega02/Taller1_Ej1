@@ -83,7 +83,6 @@ body {
     height: 100vh;
     position: top;
     background-color: white;
-    position: relative;
 }
 
 /* Estilos para el select */
@@ -107,7 +106,7 @@ button {
 .container-cart-products {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-end;
     background-color: #fff;
     padding: 20px;
     border: 1px solid #ddd;
@@ -128,17 +127,17 @@ button {
 }
 
 /* Estilos para el carrito vacío */
-.cart-empty {
-    text-align: center;
-    margin: 20px 0;
+.cart-empty {   
+    display: flex;
+    margin-top: 20px;
+    margin-right: 100px;
     font-style: italic;
 }
 
 /* Estilos para el total del carrito */
 .cart-total {
-    position: absolute;
-    right:35%; 
-    margin-top: 320px;
+    text-align: right;
+    margin-top: 1px;
 }
 .align-right {
     text-align: right;
