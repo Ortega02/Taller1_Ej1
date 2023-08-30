@@ -46,10 +46,6 @@ body {
     font-family: Arial, sans-serif;
 }
 
-.header-container {
-    flex: 1;
-}
-
 .container-icon{
     position: relative;
 }
@@ -78,8 +74,8 @@ body {
 .header-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin-top: 3%;
+    margin-left: 60%;
+    margin-top: 5%;
     height: 100vh;
     position: top;
     background-color: white;
@@ -103,28 +99,16 @@ button {
 }
 
 /* Estilos para el carrito */
-.container-cart-products {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+.container-cart-products{
+    margin-top: 35px;
     background-color: #fff;
-    padding: 20px;
-    border: 1px solid #ddd;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
-    width: 100%;
-    max-width: 400px;
-    box-sizing: border-box;
+    width: 400px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.20);
+    border-radius: 10px;
+    
 }
 
-/* Estilos para los productos en el carrito */
-.cart-product {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    margin: 10px 0;
-}
+
 /* Estilos para el contenedor de botones y cantidad */
 .quantity-control-container {
     display: flex;
@@ -192,6 +176,7 @@ button {
     display: flex;
     justify-content: space-between;
     flex: 0.8;
+ 
 }
 
 .titulo-producto-carrito{
@@ -221,8 +206,8 @@ button {
 
 .cart-total{
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: right;
+    margin-right: 10px;
     padding: 20px 0;
     gap: 20px;
 }
@@ -234,7 +219,7 @@ button {
 
 .total-pagar{
     font-size: 20px;
-    font-weight: 900;
+    font-weight: 700;
 }
 
 .hidden-cart{
@@ -311,8 +296,9 @@ button {
     display: flex;
     align-items: center; /* Center content vertically */
     padding: 10px;
-    border: 1px solid #ddd;
-    margin-bottom: 10px; /* Add some spacing between product rows */
+    border-bottom: 1px solid black;
+    margin-top: 10px; /* Add some spacing between product rows */
+    margin-bottom: 10px;
 }
 
 .info-cart-product {
@@ -338,4 +324,9 @@ button {
 
 .hidden{
     display: none;
+}
+
+.select
+{
+    margin-top: 20px;
 }

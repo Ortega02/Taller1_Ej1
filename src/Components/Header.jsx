@@ -35,7 +35,7 @@ export const Header = ({
   return (
     <header className="header-container">
       <h1>Lista de compras</h1>
-      <div>
+      <div className="select">
         <select
           value={value}
           onChange={(event) => setValue(event.target.value)}
@@ -65,7 +65,7 @@ export const Header = ({
           allProducts.map((product) => (
             <div className="cart-product" key={product.id}>
               <div className="info-cart-product">
-                <div className="info-cart-product">
+                <div className="info-cart-product2">
                   <p className="titulo-producto-carrito">{product.title}</p>
                   <span className="precio-producto-carrito">
                     ${product.price}
